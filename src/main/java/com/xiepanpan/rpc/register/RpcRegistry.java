@@ -55,6 +55,9 @@ public class RpcRegistry {
                     }).option(ChannelOption.SO_BACKLOG,128)
                     .childOption(ChannelOption.SO_KEEPALIVE,true);
             ChannelFuture channelFuture = serverBootstrap.bind(this.port).sync();
+
+            System.out.println("RPC Registry start listen at"+this.port);
+            channelFuture.channel().closeFuture().sync();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
