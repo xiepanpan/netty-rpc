@@ -44,6 +44,14 @@ public class RpcRegistry {
 
                             ChannelPipeline channelPipeline = ch.pipeline();
                             //拆包粘包处理
+                            /**入参有5个，分别解释如下
+                             maxFrameLength:框架的最大长度。如果帧的长度大于此值，则将抛出TooLongFrameException
+                             lengthFieldoffset:长度属性的偏移量。即对应的长度属性在整个消息数据中的位置
+                             lengthFieldLength:长度字段的长度。如果长度属性是int型，那么这个值就是4 (long型就是8)
+                             lengthAdjustment:要添加到长度属性值的补偿值
+                             initialBytesToStrip:从解码帧中去除的第一个字节数
+                             */
+
                             channelPipeline.addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE,0,4,0,4));
                             channelPipeline.addLast(new LengthFieldPrepender(4));
                             //编码 解码(JDK 默认序列化)

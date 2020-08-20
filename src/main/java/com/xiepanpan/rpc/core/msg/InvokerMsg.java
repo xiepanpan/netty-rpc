@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * @author: xiepanpan
  * @Date: 2020/8/20
- * @Description:
+ * @Description: 自定义传输协议的内容
  */
 public class InvokerMsg implements Serializable {
 
